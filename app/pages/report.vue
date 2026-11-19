@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'report' })
 useHead({ title: `${profile.name} · Technical Contribution Report` })
-import { glance } from '~~/content/glance'
+import { highlights } from '~~/content/highlights'
 const { hide, shownProjects, shownBots } = usePresentation()
 const o = computed(() => overview(shownProjects.value))
 const today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
@@ -9,8 +9,8 @@ const rows = computed(() => shownProjects.value.map((p) => ({ p, s: statsForProj
 const shownIds = computed(() => new Set(shownProjects.value.map((p) => p.id)))
 const months = computed(() => monthRange(shownProjects.value))
 const cellColor = (n: number) => `color-mix(in srgb, #0b6e86 ${[0, 22, 45, 70, 100][intensity(n)]}%, white)`
-const glanceTop = computed(() =>
-  glance.top
+const keyContributions = computed(() =>
+  highlights.top
     .filter((t) => shownIds.value.has(t.projectId))
     .map((t) => ({ ...t, p: getProject(t.projectId)!, s: statsForProject(getProject(t.projectId)!), proof: evidenceForIds(t.proof) })),
 )
@@ -27,7 +27,6 @@ const print = () => window.print()
   <div>
     <div class="no-print sticky top-0 z-10 flex flex-wrap items-center justify-between gap-3 border-b border-[#d6dae0] bg-[#f5f6f8] px-4 py-3 text-sm text-[#14171c]">
       <NuxtLink to="/" class="underline">← Back to site</NuxtLink>
-      <div class="w-56"><PresentationToggle /></div>
       <p class="max-w-xl text-[#4d5560]">
         Print-optimised report. Choose <strong>Save as PDF</strong> in the print dialog, A4, and turn on background graphics if offered.
       </p>
@@ -49,12 +48,12 @@ const print = () => window.print()
         </div>
       </section>
 
-      <!-- At a glance -->
+      <!-- Key contributions -->
       <section class="page-break">
-        <h2 class="text-2xl font-semibold">At a glance</h2>
-        <p class="mt-2">{{ glance.headline }}</p>
+        <h2 class="text-2xl font-semibold">Key contributions</h2>
+        <p class="mt-2">{{ highlights.headline }}</p>
         <ol class="mt-5 space-y-3 text-sm">
-          <li v-for="t in glanceTop" :key="t.projectId" class="avoid-break border-b rule pb-3">
+          <li v-for="t in keyContributions" :key="t.projectId" class="avoid-break border-b rule pb-3">
             <p class="font-semibold">{{ t.p.name }} <span class="muted font-normal">· {{ attributionLabels[t.p.attribution] }} · {{ t.s.mine }} of {{ t.s.total }} commits</span></p>
             <p class="mt-0.5">{{ t.line }}</p>
             <p class="mt-0.5 font-mono text-xs muted">Evidence: {{ t.proof.map((e) => e.id.split('-').pop()).join(', ') }}</p>

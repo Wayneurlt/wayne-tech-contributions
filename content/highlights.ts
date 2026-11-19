@@ -1,9 +1,9 @@
 /**
- * Curated "At a glance" content. Each entry points at a project and at evidence ids
+ * Curated key contributions shown on the Overview and in the PDF. Each entry points at a project and at evidence ids
  * (<repo>-<sha7>) in content/evidence/commits.json. Numbers are computed on the page
  * from repo stats, never typed here. Edit the lines to change emphasis.
  */
-export const glance = {
+export const highlights = {
   headline:
     'Full-stack developer delivering web, mobile, data and AI-assisted features across Zuri Health and the Play Group.',
   top: [
