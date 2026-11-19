@@ -36,13 +36,6 @@ export const verificationLabels: Record<Verification, { label: string; descripti
   pending: { label: 'Pending', description: 'Needs clarification or evidence before it can be relied on.' },
 }
 
-/** Bots named in the original brief, matched by exact SendPulse name. */
-export const featuredBotNames = [
-  'Somerset Westview Virtual Hospital',
-  'HF Group Virtual Hospital',
-  'ICEA LION Virtual Hospital',
-]
-
 export const capabilities: Capability[] = [
   {
     id: 'frontend',

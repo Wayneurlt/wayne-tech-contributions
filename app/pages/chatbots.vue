@@ -7,11 +7,6 @@ const q = ref('')
 const visible = ref(30)
 
 const channelCount = (c: string) => shownBots.value.filter((b) => b.channel === c).length
-const featured = computed(() =>
-  featuredBotNames
-    .map((n) => ({ name: n, bot: shownBots.value.find((b) => b.name === n) }))
-    .filter((f) => f.bot),
-)
 const moved = computed(() => shownBots.value.filter((b) => b.projectId))
 const listable = computed(() => shownBots.value.filter((b) => !b.projectId))
 const filtered = computed(() => {
@@ -56,23 +51,6 @@ const aiEvidence = evidenceForIds(['hr-backend-1e61308', 'hr-backend-d0c52a1', '
         </ul>
       </section>
 
-      <section v-if="featured.length" aria-labelledby="named">
-        <h2 id="named" class="h-section !text-xl">Client virtual-hospital bots</h2>
-        <ul class="mt-4 grid gap-4 lg:grid-cols-3">
-          <li v-for="f in featured" :key="f.name" class="card flex flex-col p-5">
-            <div class="flex items-start justify-between gap-2">
-              <Icon name="simple-icons:whatsapp" class="h-5 w-5 text-accent" aria-hidden="true" />
-              <VerificationBadge status="self-reported" />
-            </div>
-            <h3 class="mt-3 font-medium">{{ f.name }}</h3>
-            <p class="mt-1 text-xs text-muted">
-              Created {{ formatDate(f.bot!.createdAt) }} · {{ f.bot!.inboxTotal.toLocaleString('en-GB') }} inbox conversations
-            </p>
-            <p class="mt-3 text-sm text-muted">Built by Wayne Gift Ludenyi and Kingsley.</p>
-          </li>
-        </ul>
-      </section>
-
       <section v-if="listable.length" aria-labelledby="all">
         <div class="flex flex-wrap items-end justify-between gap-2">
           <h2 id="all" class="h-section !text-xl">All chatbots ({{ listable.length }})</h2>
@@ -91,7 +69,7 @@ const aiEvidence = evidenceForIds(['hr-backend-1e61308', 'hr-backend-d0c52a1', '
         </form>
 
         <p class="mt-3 text-sm text-muted" role="status" aria-live="polite">{{ filtered.length }} bots</p>
-        <ul class="mt-3 grid gap-2 md:grid-cols-2">
+        <ul class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           <BotRow v-for="b in filtered.slice(0, visible)" :key="b.id" :bot="b" />
         </ul>
         <button v-if="filtered.length > visible" type="button" class="btn mt-4" @click="visible += 30">Show more</button>

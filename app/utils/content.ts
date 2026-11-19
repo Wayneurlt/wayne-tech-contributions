@@ -1,12 +1,12 @@
 import { projects as rawProjects } from '~~/content/projects'
-import { categories, capabilities, featuredBotNames, profile, projectOrder, research, verificationLabels } from '~~/content/site'
+import { categories, capabilities, profile, projectOrder, research, verificationLabels } from '~~/content/site'
 import commitsJson from '~~/content/evidence/commits.json'
 import { manualEvidence } from '~~/content/evidence/media'
 import botJson from '~~/content/evidence/chatbots.json'
 import repoStatsJson from '~~/content/evidence/repo-stats.json'
 import type { Attribution, ChatbotRecord, Evidence, Project, RepoStat } from '~/types/content'
 
-export { categories, capabilities, featuredBotNames, profile, research, verificationLabels }
+export { categories, capabilities, profile, research, verificationLabels }
 
 const rank = (id: string) => { const i = projectOrder.indexOf(id); return i === -1 ? 999 : i }
 export const projects: Project[] = [...rawProjects].sort((a, b) => rank(a.id) - rank(b.id))
