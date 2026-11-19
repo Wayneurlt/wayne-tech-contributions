@@ -23,7 +23,7 @@ Set `PORTFOLIO_PASSWORD` (and optionally `PORTFOLIO_USER`, default `management`)
 - **Presentation mode** (switch in the sidebar, or open any page with `?present=1`) hides every placeholder and everything unconfirmed, so the site and the PDF show only evidenced content. `?present=0` turns it off.
 - **At a glance** (`/glance`) is a one-page summary for management, driven by `content/glance.ts`.
 - **Order of projects** is set in `content/site.ts` (`projectOrder`).
-- **Chatbots**: confirm your bots and your role on each in `content/evidence/chatbot-ownership.ts`.
+- **Chatbots**: the SendPulse list is scoped to Kenyan numbers (`scripts/sendpulse-inventory.mjs`). Attribution (built by Wayne and Kingsley, self-reported) is in `content/evidence/chatbot-ownership.ts`.
 - `docs/talking-points.md` is private notes for the author and is not served by the site.
 
 ## Where content lives
@@ -35,7 +35,7 @@ Set `PORTFOLIO_PASSWORD` (and optionally `PORTFOLIO_USER`, default `management`)
 | Commit evidence (generated, committed) | `content/evidence/commits.json` |
 | Per-repo commit counts (generated, committed) | `content/evidence/repo-stats.json` |
 | Hand-picked commits to show | `content/evidence/selection.json` |
-| Screenshots, recordings, PRs, Linear issues | `content/evidence/media.ts` |
+| Screenshots, recordings, PRs | `content/evidence/media.ts` |
 | Schemas | `app/types/content.ts` |
 
 ## Refreshing git evidence

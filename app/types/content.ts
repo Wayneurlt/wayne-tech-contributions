@@ -25,7 +25,6 @@ export type Attribution = 'lead' | 'primary' | 'shared' | 'minor' | 'unassessed'
 export type EvidenceType =
   | 'commit'
   | 'pull-request'
-  | 'linear-issue'
   | 'screenshot'
   | 'recording'
   | 'document'

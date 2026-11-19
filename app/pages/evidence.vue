@@ -40,8 +40,8 @@ const pos = (d: string) => ((new Date(d).getTime() - range.value.a) / range.valu
     <p class="eyebrow">Page 5</p>
     <h1 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Engineering activity and evidence</h1>
     <p class="lead mt-3 max-w-3xl">
-      Real records only, taken from local git history. Pull requests and Linear tickets are not included yet because those
-      sources have not been connected.
+      Real records only, taken from local git history. Pull requests are not included yet because that
+      source has not been connected.
     </p>
 
     <section class="mt-10" aria-labelledby="classes">
@@ -56,7 +56,6 @@ const pos = (d: string) => ((new Date(d).getTime() - range.value.a) / range.valu
         <StatTile :value="scoped.length" label="Commits linked" note="All authored by me" />
         <template v-if="!hide">
           <StatTile value="0" label="Pull requests linked" note="Pending: needs gh or an export" />
-          <StatTile value="0" label="Linear tickets linked" note="Pending: connector or export" />
         </template>
       </div>
     </section>

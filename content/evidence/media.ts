@@ -1,7 +1,7 @@
 import type { Evidence } from '../../app/types/content'
 
 /**
- * Manually supplied evidence: screenshots, screen recordings, Linear issues,
+ * Manually supplied evidence: screenshots, screen recordings,
  * pull requests and documents. Add records here; they appear automatically on the
  * project and evidence pages. Files for media go in public/evidence/<project-id>/.
  *
