@@ -11,7 +11,7 @@ const groups = computed(() =>
 
 <template>
   <div class="container-page py-12">
-    <p class="eyebrow">Page 4</p>
+    <p class="eyebrow">Page 6</p>
     <h1 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Technical capabilities</h1>
     <p class="lead mt-3 max-w-3xl">
       Each capability links to the projects where it is evidenced. Groups without evidence are labelled and not padded.

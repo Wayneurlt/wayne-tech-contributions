@@ -5,7 +5,7 @@ const { hide } = usePresentation()
 
 <template>
   <div class="container-page py-12">
-    <p class="eyebrow">Page 6</p>
+    <p class="eyebrow">Page 4</p>
     <h1 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Research, innovation and proofs of concept</h1>
     <p class="lead mt-3 max-w-3xl">
       Technical work that may not have reached production. Each entry states its purpose and approach, and is explicit about
