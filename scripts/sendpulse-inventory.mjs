@@ -30,13 +30,28 @@ if (mode === 'keys') {
   for (const [k, v] of Object.entries(b)) if (v && typeof v === 'object' && !Array.isArray(v)) console.log(` ${k}:`, Object.keys(v).join(', '))
 } else {
   mkdirSync(join(root, 'content/.generated'), { recursive: true })
-  const slim = bots.map((b) => ({ id: b.id, name: b.name, channel: b.channel, status: b.status, created_at: b.created_at, inbox_total: b.inbox?.total, inbox_unread: b.inbox?.unread, deleted: b.delete_at ?? null }))
+  // Country calling code of a WhatsApp bot's number. Only the code is kept, never the number.
+  const dialCode = (phone) => {
+    const d = String(phone ?? '').replace(/\D/g, '')
+    if (!d) return null
+    return ['254', '234', '233', '260', '256', '255', '250', '251', '27', '44', '1'].find((c) => d.startsWith(c)) ?? `other:${d.slice(0, 3)}`
+  }
+  const OTHER_COUNTRY_NAME = /nigeria|ghana|zambia|uganda|tanzania|rwanda|ethiopia|south africa|\b(ng|gh|zm|ug|tz|rw|et|za)\b/i
+  const slim = bots.map((b) => ({ id: b.id, name: b.name, channel: b.channel, status: b.status, created_at: b.created_at, inbox_total: b.inbox?.total, inbox_unread: b.inbox?.unread, deleted: b.delete_at ?? null, dial: b.channel === 'WHATSAPP' ? dialCode(b.channel_data?.phone) : null }))
   writeFileSync(join(root, 'content/.generated/sendpulse-bots.json'), JSON.stringify(slim, null, 2))
-  // Committed, report-safe subset: no tokens, settings, unread counts or status codes.
+
+  // Scope: WhatsApp bots on Kenyan (+254) numbers. Bots without a number (Instagram, website chat)
+  // are kept unless their name points at another country.
+  const keep = (b) => (b.channel === 'WHATSAPP' ? b.dial === '254' : !OTHER_COUNTRY_NAME.test(b.name))
+  const removed = slim.filter((b) => !keep(b))
+  console.log('not listed (non-Kenyan):', removed.map((b) => `${b.name.trim()} [${b.channel === 'WHATSAPP' ? '+' + b.dial : b.channel}]`).join('; '))
+
+  // Committed, report-safe subset: no tokens, phone numbers, settings, unread counts or status codes.
   const curated = {
     retrievedAt: new Date().toISOString(),
     source: 'SendPulse chatbots API, read-only',
-    bots: slim.map((b) => ({
+    scope: 'WhatsApp bots on Kenyan (+254) numbers, plus Instagram and website chat bots not named for another country',
+    bots: slim.filter(keep).map((b) => ({
       id: b.id,
       name: b.name.trim(),
       channel: b.channel,

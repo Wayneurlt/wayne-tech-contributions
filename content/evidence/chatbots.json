@@ -1,21 +1,14 @@
 {
-  "retrievedAt": "2026-11-19T11:22:15.958Z",
+  "retrievedAt": "2026-11-19T12:17:04.494Z",
   "source": "SendPulse chatbots API, read-only",
+  "scope": "WhatsApp bots on Kenyan (+254) numbers, plus Instagram and website chat bots not named for another country",
   "bots": [
     {
       "id": "68639e76720929dc360b1f30",
       "name": "Zuri Health",
       "channel": "INSTAGRAM",
       "createdAt": "2025-07-01",
-      "inboxTotal": 1126,
-      "projectId": null
-    },
-    {
-      "id": "66ff0bcaa2d19d02a70ee9d8",
-      "name": "nigeria.zuri.health",
-      "channel": "LIVE_CHAT",
-      "createdAt": "2024-10-03",
-      "inboxTotal": 0,
+      "inboxTotal": 1128,
       "projectId": null
     },
     {
@@ -131,27 +124,11 @@
       "projectId": null
     },
     {
-      "id": "69ae7197ef073618880212d2",
-      "name": "MTN Daktari",
-      "channel": "WHATSAPP",
-      "createdAt": "2026-03-09",
-      "inboxTotal": 29451,
-      "projectId": null
-    },
-    {
       "id": "69aa849fc971f11c5d07c56a",
       "name": "Bamburi Cement Virtual Hospital",
       "channel": "WHATSAPP",
       "createdAt": "2026-03-06",
       "inboxTotal": 4,
-      "projectId": null
-    },
-    {
-      "id": "699de98c12dae4e2a0097b32",
-      "name": "Petals by Zuri Health GH",
-      "channel": "WHATSAPP",
-      "createdAt": "2026-02-24",
-      "inboxTotal": 8,
       "projectId": null
     },
     {
@@ -179,27 +156,11 @@
       "projectId": null
     },
     {
-      "id": "6932cb44866481632104c429",
-      "name": "Hygeia HMO",
-      "channel": "WHATSAPP",
-      "createdAt": "2025-12-05",
-      "inboxTotal": 17,
-      "projectId": null
-    },
-    {
       "id": "69172ff753d980a38f0dc84b",
       "name": "Fidelity Shield",
       "channel": "WHATSAPP",
       "createdAt": "2025-11-14",
       "inboxTotal": 152,
-      "projectId": null
-    },
-    {
-      "id": "69145a3329ebd3b6b40eb35f",
-      "name": "Petals by Zuri Health NG",
-      "channel": "WHATSAPP",
-      "createdAt": "2025-11-12",
-      "inboxTotal": 492,
       "projectId": null
     },
     {
@@ -275,22 +236,6 @@
       "projectId": null
     },
     {
-      "id": "679b2898e8d334ccca0ecdc3",
-      "name": "MTN SA Virtual Hospital",
-      "channel": "WHATSAPP",
-      "createdAt": "2025-01-30",
-      "inboxTotal": 53,
-      "projectId": null
-    },
-    {
-      "id": "67976c8c1975fb48d4007411",
-      "name": "MTN Daktari",
-      "channel": "WHATSAPP",
-      "createdAt": "2025-01-27",
-      "inboxTotal": 640,
-      "projectId": null
-    },
-    {
       "id": "67923ba9b52b6d2b2b0710ef",
       "name": "Pacis insurance virtual Hospital",
       "channel": "WHATSAPP",
@@ -331,35 +276,11 @@
       "projectId": null
     },
     {
-      "id": "671f559c0e188f34de0cc38f",
-      "name": "Zuri Health GH",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-10-28",
-      "inboxTotal": 409,
-      "projectId": null
-    },
-    {
       "id": "671f5070ad1a013d6c075842",
       "name": "Girls First Finance Healthbot",
       "channel": "WHATSAPP",
       "createdAt": "2024-10-28",
       "inboxTotal": 41,
-      "projectId": null
-    },
-    {
-      "id": "671a10ae4e9cf19c180ded32",
-      "name": "KmoneyHealth",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-10-24",
-      "inboxTotal": 26,
-      "projectId": null
-    },
-    {
-      "id": "671891d9ef68acdeb705b5a9",
-      "name": "Zuri Health ZM",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-10-23",
-      "inboxTotal": 439,
       "projectId": null
     },
     {
@@ -379,19 +300,11 @@
       "projectId": null
     },
     {
-      "id": "66feab90a1101e763d012d88",
-      "name": "Zuri Ease Ghana",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-10-03",
-      "inboxTotal": 11,
-      "projectId": null
-    },
-    {
       "id": "66fe60a1c9352d9db80343ef",
       "name": "Vera KE",
       "channel": "WHATSAPP",
       "createdAt": "2024-10-03",
-      "inboxTotal": 52302,
+      "inboxTotal": 52328,
       "projectId": null
     },
     {
@@ -403,51 +316,11 @@
       "projectId": null
     },
     {
-      "id": "66f68b76e2025dae350e8064",
-      "name": "Vera Nigeria",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-09-27",
-      "inboxTotal": 28510,
-      "projectId": null
-    },
-    {
-      "id": "66f6875e8b82f98d61020c3b",
-      "name": "Zuri Ease Nigeria",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-09-27",
-      "inboxTotal": 24,
-      "projectId": null
-    },
-    {
-      "id": "66f661d267b44412ee0c84e4",
-      "name": "Zuri Health Testing",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-09-27",
-      "inboxTotal": 269,
-      "projectId": null
-    },
-    {
       "id": "66f3ca528fc9926be904e16a",
       "name": "Zuri Ease Kenya",
       "channel": "WHATSAPP",
       "createdAt": "2024-09-25",
       "inboxTotal": 205,
-      "projectId": null
-    },
-    {
-      "id": "66f2ef1e4ef5311c0a03d713",
-      "name": "Zuri Health",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-09-24",
-      "inboxTotal": 1,
-      "projectId": null
-    },
-    {
-      "id": "66f1ba6da9546ddd170f5d89",
-      "name": "Decagon",
-      "channel": "WHATSAPP",
-      "createdAt": "2024-09-23",
-      "inboxTotal": 259,
       "projectId": null
     },
     {

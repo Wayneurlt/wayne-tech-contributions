@@ -12,6 +12,7 @@ const rank = (id: string) => { const i = projectOrder.indexOf(id); return i === 
 export const projects: Project[] = [...rawProjects].sort((a, b) => rank(a.id) - rank(b.id))
 
 export const botRetrievedAt: string = botJson.retrievedAt
+export const botScope: string = botJson.scope
 export const bots = botJson.bots as ChatbotRecord[]
 export const botsForProject = (id: string) => bots.filter((b) => b.projectId === id)
 export const unassignedBots = bots.filter((b) => !b.projectId)
