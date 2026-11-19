@@ -25,7 +25,6 @@ const isActive = (to: string) => (to === '/' ? route.path === '/' : route.path.s
             <Icon :name="l.icon" class="h-4 w-4" aria-hidden="true" /> {{ l.label }}
           </NuxtLink>
         </li>
-        <li class="py-2"><PresentationToggle /></li>
         <li>
           <NuxtLink to="/report" class="flex items-center gap-3 rounded-lg px-2 py-3 text-sm text-fg">
             <Icon name="lucide:file-down" class="h-4 w-4" aria-hidden="true" /> PDF report

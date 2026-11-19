@@ -41,7 +41,6 @@ const initials = profile.name.split(' ').map((w) => w[0]).slice(0, 2).join('')
     </nav>
 
     <div class="mt-auto space-y-3 pt-6 text-xs text-muted">
-      <PresentationToggle />
       <p class="flex items-center gap-1.5"><Icon name="lucide:lock" class="h-3 w-3" aria-hidden="true" /> Confidential, internal review</p>
     </div>
   </aside>

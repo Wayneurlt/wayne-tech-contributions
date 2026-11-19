@@ -20,8 +20,8 @@ Set `PORTFOLIO_PASSWORD` (and optionally `PORTFOLIO_USER`, default `management`)
 
 ## Presenting
 
-- **Presentation mode** (switch in the sidebar, or open any page with `?present=1`) hides every placeholder and everything unconfirmed, so the site and the PDF show only evidenced content. `?present=0` turns it off.
-- **At a glance** (`/glance`) is a one-page summary for management, driven by `content/glance.ts`.
+- **Overview** (`/`) carries the key contributions, driven by `content/highlights.ts`.
+- **Clean view**: opening any page with `?present=1` hides every placeholder and everything unconfirmed (`?present=0` turns it back on). There is no on-screen switch.
 - **Order of projects** is set in `content/site.ts` (`projectOrder`).
 - **Chatbots**: the SendPulse list is scoped to Kenyan numbers (`scripts/sendpulse-inventory.mjs`). Attribution (built by Wayne and Kingsley, self-reported) is in `content/evidence/chatbot-ownership.ts`.
 - `docs/talking-points.md` is private notes for the author and is not served by the site.
