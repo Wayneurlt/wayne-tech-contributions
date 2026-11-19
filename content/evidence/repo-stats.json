@@ -1,0 +1,284 @@
+[
+  {
+    "repo": "temi_v1",
+    "remote": "https://github.com/The-play-group/temi_v1",
+    "totalCommits": 130,
+    "myCommits": 36,
+    "firstCommit": "2025-01-24",
+    "lastCommit": "2025-05-12",
+    "monthly": {
+      "2025-05": 3,
+      "2025-04": 16,
+      "2025-03": 8,
+      "2025-02": 4,
+      "2025-01": 5
+    },
+    "otherContributors": [
+      "Frank Omondi",
+      "tinegaCollins"
+    ]
+  },
+  {
+    "repo": "Temi_v2",
+    "remote": "https://github.com/The-play-group/Temi_v2",
+    "totalCommits": 101,
+    "myCommits": 59,
+    "firstCommit": "2025-06-27",
+    "lastCommit": "2026-10-13",
+    "monthly": {
+      "2026-10": 2,
+      "2026-06": 7,
+      "2025-10": 1,
+      "2025-09": 2,
+      "2025-08": 14,
+      "2025-07": 20,
+      "2025-06": 13
+    },
+    "otherContributors": [
+      "tinegaCollins",
+      "Frank Omondi"
+    ]
+  },
+  {
+    "repo": "temi-app",
+    "remote": "https://github.com/The-play-group/temi-app",
+    "totalCommits": 103,
+    "myCommits": 14,
+    "firstCommit": "2025-08-04",
+    "lastCommit": "2025-12-09",
+    "monthly": {
+      "2025-12": 1,
+      "2025-11": 4,
+      "2025-08": 9
+    },
+    "otherContributors": [
+      "tinega collins",
+      "Frank Omondi"
+    ]
+  },
+  {
+    "repo": "temi-backend_v2",
+    "remote": "https://github.com/The-play-group/temi-backend_v2",
+    "totalCommits": 106,
+    "myCommits": 0,
+    "firstCommit": null,
+    "lastCommit": null,
+    "monthly": {},
+    "otherContributors": [
+      "tinega collins",
+      "Frank Omondi"
+    ]
+  },
+  {
+    "repo": "Temi-Subscription-Landing-Page-",
+    "remote": "https://github.com/The-play-group/Temi-Subscription-Landing-Page-",
+    "totalCommits": 15,
+    "myCommits": 12,
+    "firstCommit": "2026-05-13",
+    "lastCommit": "2026-08-25",
+    "monthly": {
+      "2026-08": 1,
+      "2026-06": 3,
+      "2026-05": 8
+    },
+    "otherContributors": [
+      "tinega collins"
+    ]
+  },
+  {
+    "repo": "hr-frontend",
+    "remote": "https://github.com/The-play-group/hr-frontend",
+    "totalCommits": 45,
+    "myCommits": 10,
+    "firstCommit": "2026-10-15",
+    "lastCommit": "2026-10-30",
+    "monthly": {
+      "2026-10": 10
+    },
+    "otherContributors": [
+      "Frank Omondi"
+    ]
+  },
+  {
+    "repo": "hr-backend",
+    "remote": "https://github.com/The-play-group/hr-backend",
+    "totalCommits": 61,
+    "myCommits": 11,
+    "firstCommit": "2026-10-15",
+    "lastCommit": "2026-10-30",
+    "monthly": {
+      "2026-10": 11
+    },
+    "otherContributors": [
+      "Frank Omondi"
+    ]
+  },
+  {
+    "repo": "byzara_v3",
+    "remote": "https://github.com/The-play-group/byzara_v3",
+    "totalCommits": 288,
+    "myCommits": 81,
+    "firstCommit": "2025-05-08",
+    "lastCommit": "2026-11-17",
+    "monthly": {
+      "2026-11": 10,
+      "2026-10": 15,
+      "2026-09": 4,
+      "2026-06": 2,
+      "2026-05": 1,
+      "2026-04": 4,
+      "2026-03": 7,
+      "2026-01": 19,
+      "2025-11": 2,
+      "2025-09": 6,
+      "2025-06": 9,
+      "2025-05": 2
+    },
+    "otherContributors": [
+      "tinega collins",
+      "Frank Omondi"
+    ]
+  },
+  {
+    "repo": "ZuriHealthFrontend",
+    "remote": "https://github.com/Play-Group-Limited/ZuriHealthFrontend",
+    "totalCommits": 132,
+    "myCommits": 63,
+    "firstCommit": "2026-05-06",
+    "lastCommit": "2026-05-28",
+    "monthly": {
+      "2026-05": 63
+    },
+    "otherContributors": [
+      "Fidelisaboke"
+    ]
+  },
+  {
+    "repo": "bi-dashboard",
+    "remote": "https://github.com/Play-Group-Limited/bi-dashboard",
+    "totalCommits": 18,
+    "myCommits": 14,
+    "firstCommit": "2026-07-09",
+    "lastCommit": "2026-09-14",
+    "monthly": {
+      "2026-09": 3,
+      "2026-07": 11
+    },
+    "otherContributors": [
+      "Frank Omondi",
+      "frank-zuri"
+    ]
+  },
+  {
+    "repo": "stats-dashboard",
+    "remote": "https://github.com/Play-Group-Limited/stats-dashboard",
+    "totalCommits": 13,
+    "myCommits": 11,
+    "firstCommit": "2026-11-09",
+    "lastCommit": "2026-11-16",
+    "monthly": {
+      "2026-11": 11
+    },
+    "otherContributors": [
+      "Frank Omondi",
+      "frank-zuri"
+    ]
+  },
+  {
+    "repo": "doctors-portal",
+    "remote": "https://github.com/Play-Group-Limited/doctors-portal",
+    "totalCommits": 46,
+    "myCommits": 8,
+    "firstCommit": "2026-05-29",
+    "lastCommit": "2026-06-15",
+    "monthly": {
+      "2026-06": 7,
+      "2026-05": 1
+    },
+    "otherContributors": [
+      "tinega collins"
+    ]
+  },
+  {
+    "repo": "zurimama_chat_automation",
+    "remote": "https://github.com/Play-Group-Limited/zurimama_chat_automation",
+    "totalCommits": 62,
+    "myCommits": 0,
+    "firstCommit": null,
+    "lastCommit": null,
+    "monthly": {},
+    "otherContributors": [
+      "BrunoKiptoo",
+      "Izundu Kingsley",
+      "Play-group-tech",
+      "introvertisaac",
+      "sterlingking1990"
+    ]
+  },
+  {
+    "repo": "medical-camps-frontend",
+    "remote": "https://github.com/Play-Group-Limited/medical-camps-frontend",
+    "totalCommits": 76,
+    "myCommits": 0,
+    "firstCommit": null,
+    "lastCommit": null,
+    "monthly": {},
+    "otherContributors": [
+      "Frank Omondi"
+    ]
+  },
+  {
+    "repo": "medical-camps-backend",
+    "remote": "https://github.com/Play-Group-Limited/medical-camps-backend",
+    "totalCommits": 72,
+    "myCommits": 0,
+    "firstCommit": null,
+    "lastCommit": null,
+    "monthly": {},
+    "otherContributors": [
+      "Frank Omondi",
+      "frank-zuri"
+    ]
+  },
+  {
+    "repo": "Hema",
+    "remote": "https://github.com/The-play-group/Hema",
+    "totalCommits": 283,
+    "myCommits": 78,
+    "firstCommit": "2025-05-15",
+    "lastCommit": "2026-03-25",
+    "monthly": {
+      "2026-03": 2,
+      "2026-02": 3,
+      "2026-01": 14,
+      "2025-11": 2,
+      "2025-09": 2,
+      "2025-08": 3,
+      "2025-07": 13,
+      "2025-06": 31,
+      "2025-05": 8
+    },
+    "otherContributors": [
+      "tinega collins",
+      "Frank Omondi"
+    ]
+  },
+  {
+    "repo": "Play",
+    "remote": "https://github.com/The-play-group/Play",
+    "totalCommits": 30,
+    "myCommits": 24,
+    "firstCommit": "2025-05-22",
+    "lastCommit": "2026-09-26",
+    "monthly": {
+      "2026-09": 3,
+      "2026-04": 1,
+      "2025-09": 5,
+      "2025-06": 1,
+      "2025-05": 14
+    },
+    "otherContributors": [
+      "tinegaCollins"
+    ]
+  }
+]
