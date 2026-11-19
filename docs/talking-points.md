@@ -57,13 +57,13 @@ Note on SendPulse figures: "inbox conversations" is not users. Say "conversation
 
 ## 6. Chatbots
 
-- 57 bots exist in the shared SendPulse account. Being listed is not evidence you built them.
-- Claim only the ones you can describe: flows you designed, integrations you set up, what you tested, who the client was.
-- Fill in `content/evidence/chatbot-ownership.ts` for each, and the page will show them.
+- The report lists the SendPulse chatbots on Kenyan numbers (41 of the 57 in the shared account). The 39 WhatsApp ones are presented as built by you and Kingsley.
+- That attribution is self-reported: SendPulse does not record who built a bot, so be ready to say plainly what each of you did (flows, integrations, testing) and who the client was.
+- Use "conversations", not "users", for the inbox figures.
 
 ## 7. What to avoid
 
-- Don't present all 57 bots as your work.
+- Don't present the Instagram and website chat bots as yours; only the WhatsApp ones are claimed.
 - Don't cite unread counts. Some are negative and unreliable.
 - Don't call a shared project yours alone.
 - Don't quote a figure you can't source.
@@ -81,7 +81,7 @@ Note on SendPulse figures: "inbox conversations" is not users. Say "conversation
 - [ ] Turn presentation mode on (`?present=1`) and click through every page.
 - [ ] Confirm bi.zuri.health and i3.zuri.health map to the repos shown.
 - [ ] Add live status for each project.
-- [ ] Add your role on each chatbot you want shown.
+- [ ] Be ready to describe your part versus Kingsley on the bigger bots (Vera KE, Byzara, Nikonachoice, Zuri Health).
 - [ ] Add at least one impact figure per top project.
 - [ ] Generate the PDF with presentation mode on and read every page.
 - [ ] Check that client names and figures can be shared.
