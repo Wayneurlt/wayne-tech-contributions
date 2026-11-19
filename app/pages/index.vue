@@ -41,33 +41,13 @@ const pad = (n: number) => String(n).padStart(3, '0')
 
 <template>
   <div class="container-page space-y-6 py-6 lg:py-2">
-    <!-- Hero -->
-    <section class="grid gap-4 lg:grid-cols-[1.35fr_1fr]" aria-labelledby="hero">
-      <div class="card flex flex-col justify-between p-6 sm:p-8">
-        <div>
-          <p class="text-sm text-muted">Technical contribution report</p>
-          <h1 id="hero" class="mt-3 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-6xl">
-            {{ profile.name.split(' ').slice(0, 2).join(' ') }}<br />{{ profile.name.split(' ').slice(2).join(' ') }}
-          </h1>
-          <ul class="mt-5 flex flex-wrap gap-2">
-            <li class="tag-pill"><span class="h-1.5 w-1.5 rounded-full bg-accent" />{{ profile.title }}</li>
-            <li class="tag-pill"><span class="h-1.5 w-1.5 rounded-full bg-accent" />{{ profile.organisation }}</li>
-          </ul>
-          <p class="lead mt-5 max-w-xl text-sm sm:text-base">{{ profile.intro }}</p>
-        </div>
-        <div class="mt-7 flex flex-wrap items-center gap-3">
-          <ArrowButton to="/projects" accent>Browse projects</ArrowButton>
-          <ArrowButton to="/summary">Summary</ArrowButton>
-        </div>
-      </div>
-
-      <div class="card flex flex-col p-6">
-        <p class="num">Activity</p>
-        <p class="mt-2 text-lg font-medium">Work over time</p>
-        <p class="text-xs text-muted">{{ period }}</p>
-        <div class="my-4 flex-1"><ActivityChart :data="activity" label="My commits per month across documented repositories" /></div>
-        <NuxtLink to="/timeline" class="link text-sm">Open the timeline →</NuxtLink>
-      </div>
+    <!-- Activity -->
+    <section class="card p-6 sm:p-8" aria-labelledby="hero">
+      <p class="num">Overview</p>
+      <h1 id="hero" class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Work over time</h1>
+      <p class="mt-1 text-sm text-muted">{{ period }}</p>
+      <div class="mt-5"><ActivityChart :data="activity" label="My commits per month across documented repositories" /></div>
+      <NuxtLink to="/timeline" class="link mt-4 inline-block text-sm">Open the timeline →</NuxtLink>
     </section>
 
     <!-- Scope -->
@@ -87,7 +67,7 @@ const pad = (n: number) => String(n).padStart(3, '0')
     <section class="card p-6 sm:p-8" aria-labelledby="delivered">
       <p class="num">Key contributions</p>
       <h2 id="delivered" class="h-section mt-2">What I delivered</h2>
-      <p class="mt-2 max-w-3xl text-sm text-muted">{{ highlights.headline }} Shared projects say so, and the share of commits is shown for each.</p>
+      <p class="mt-2 max-w-3xl text-sm text-muted">Shared projects say so, and the share of commits is shown for each.</p>
       <ol class="mt-6 space-y-4">
         <li v-for="(t, i) in top" :key="t.projectId" class="card !rounded-xl p-4 sm:p-5">
           <div class="flex flex-wrap items-start justify-between gap-3">
