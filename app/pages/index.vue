@@ -1,8 +1,24 @@
 <script setup lang="ts">
+import { highlights } from '~~/content/highlights'
+import { isMyBot } from '~~/content/evidence/chatbot-ownership'
 useHead({ title: 'Overview · Technical Contributions' })
+
 const { shownProjects, shownBots } = usePresentation()
 const o = computed(() => overview(shownProjects.value))
 const activity = monthlyActivity()
+const shownIds = computed(() => new Set(shownProjects.value.map((p) => p.id)))
+
+const top = computed(() =>
+  highlights.top
+    .filter((t) => shownIds.value.has(t.projectId))
+    .map((t) => {
+      const p = getProject(t.projectId)!
+      return { ...t, p, s: statsForProject(p), proof: evidenceForIds(t.proof) }
+    }),
+)
+
+const months = computed(() => monthRange(shownProjects.value))
+const period = computed(() => (months.value.length ? `${formatMonth(months.value[0]!)} to ${formatMonth(months.value.at(-1)!)}` : ''))
 
 const rings = computed(() => {
   const counts = new Map<string, number>()
@@ -13,18 +29,19 @@ const rings = computed(() => {
     .slice(0, 8)
 })
 
-const highlights = [
-  { to: '/projects/i3-zuri-health', title: 'i3 Biannual Report platform', text: 'Neon Postgres data model by month and country, report calculation, admin entry and export, built between 9 and 16 November 2026.' },
-  { to: '/projects/zuri-frontend-poc', title: 'Multi-country Zuri Health front end', text: 'Country-aware Next.js proof of concept with English and French localisation across five markets.' },
-  { to: '/projects/play-group-hr', title: 'HR platform features', text: 'Leave and records, push notifications, projects, recognition and contributions to the HR Assistant.' },
-  { to: '/projects/byzara', title: 'ByZara ordering and access control', text: 'Order, inventory and user administration, a WhatsApp ordering flow, and role-based permissions.' },
-]
+const whatsapp = computed(() => shownBots.value.filter(isMyBot))
+const sectorCards = computed(() =>
+  categories
+    .map((c) => ({ ...c, items: shownProjects.value.filter((p) => p.category === c.id) }))
+    .filter((c) => c.items.length || (c.id === 'conversational-ai' && whatsapp.value.length)),
+)
+const groupsWithEvidence = capabilities.filter((c) => c.projectIds.length || c.technologies.length)
 const pad = (n: number) => String(n).padStart(3, '0')
 </script>
 
 <template>
   <div class="container-page space-y-6 py-6 lg:py-2">
-    <!-- Hero bento -->
+    <!-- Hero -->
     <section class="grid gap-4 lg:grid-cols-[1.35fr_1fr]" aria-labelledby="hero">
       <div class="card flex flex-col justify-between p-6 sm:p-8">
         <div>
@@ -45,29 +62,112 @@ const pad = (n: number) => String(n).padStart(3, '0')
       </div>
 
       <div class="card flex flex-col p-6">
-        <p class="num">ACTIVITY</p>
+        <p class="num">Activity</p>
         <p class="mt-2 text-lg font-medium">Work over time</p>
+        <p class="text-xs text-muted">{{ period }}</p>
         <div class="my-4 flex-1"><ActivityChart :data="activity" label="My commits per month across documented repositories" /></div>
-        <NuxtLink to="/evidence" class="link text-sm">Engineering evidence →</NuxtLink>
+        <NuxtLink to="/timeline" class="link text-sm">Open the timeline →</NuxtLink>
       </div>
     </section>
 
-    <!-- Stats -->
+    <!-- Scope -->
     <section aria-labelledby="scope">
       <h2 id="scope" class="sr-only">Scope at a glance</h2>
-      <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
         <StatTile :value="o.projectCount" label="Projects documented" :note="o.pendingProjects ? `${o.pendingProjects} pending confirmation` : undefined" />
         <StatTile :value="o.sectors" label="Sectors and categories" />
         <StatTile :value="o.repos" label="Repositories" note="Shared with other developers" />
         <StatTile :value="o.evidenceCount" label="Linked commits" note="Each one verified" />
+        <StatTile :value="whatsapp.length" label="WhatsApp chatbots" note="Built with Kingsley, self-reported" />
+        <StatTile :value="months.length" label="Months of activity" :note="period" />
       </div>
     </section>
 
-    <!-- Projects as numbered rows -->
+    <!-- What I delivered -->
+    <section class="card p-6 sm:p-8" aria-labelledby="delivered">
+      <p class="num">Key contributions</p>
+      <h2 id="delivered" class="h-section mt-2">What I delivered</h2>
+      <p class="mt-2 max-w-3xl text-sm text-muted">{{ highlights.headline }} Shared projects say so, and the share of commits is shown for each.</p>
+      <ol class="mt-6 space-y-4">
+        <li v-for="(t, i) in top" :key="t.projectId" class="card !rounded-xl p-4 sm:p-5">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div class="flex min-w-0 items-start gap-3">
+              <span class="num mt-1">{{ pad(i + 1) }}</span>
+              <div class="min-w-0">
+                <NuxtLink :to="`/projects/${t.projectId}`" class="font-medium hover:text-accent">{{ t.p.name }}</NuxtLink>
+                <p class="mt-1 max-w-2xl text-sm text-muted">{{ t.line }}</p>
+              </div>
+            </div>
+            <span class="chip shrink-0">{{ attributionLabels[t.p.attribution] }}</span>
+          </div>
+          <div class="mt-4"><AttributionMeter :mine="t.s.mine" :total="t.s.total" /></div>
+          <p class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted">
+            <span>Evidence:</span>
+            <template v-for="e in t.proof" :key="e.id">
+              <a v-if="e.url" :href="e.url" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 font-mono text-fg hover:text-accent" :title="e.title">
+                {{ e.id.split('-').pop() }}<Icon name="lucide:external-link" class="h-3 w-3" aria-hidden="true" />
+              </a>
+              <span v-else class="font-mono">{{ e.id.split('-').pop() }}</span>
+            </template>
+          </p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Chatbots and research -->
+    <section class="grid gap-4 md:grid-cols-2" aria-label="Chatbots and research">
+      <NuxtLink v-if="whatsapp.length" to="/chatbots" class="card card-hover block p-6">
+        <p class="num">Chatbots</p>
+        <p class="mt-2 text-lg font-medium">{{ whatsapp.length }} WhatsApp chatbots</p>
+        <p class="mt-1 text-sm text-muted">
+          Virtual-hospital and consumer bots on SendPulse, Kenyan numbers, built with Kingsley (self-reported). Clients include
+          Somerset, HF Group and ICEA LION.
+        </p>
+        <p class="mt-4 text-xs text-accent">See the chatbot list →</p>
+      </NuxtLink>
+      <NuxtLink to="/research" class="card card-hover block p-6">
+        <p class="num">Research</p>
+        <p class="mt-2 text-lg font-medium">{{ research[0]?.title }}</p>
+        <p class="mt-1 text-sm text-muted">{{ research[0]?.purpose }}</p>
+        <p class="mt-4 text-xs text-accent">Read about the proof of concept →</p>
+      </NuxtLink>
+    </section>
+
+    <!-- Sectors -->
+    <section aria-labelledby="sectors">
+      <h2 id="sectors" class="h-section mb-4">Sectors covered</h2>
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <li v-for="c in sectorCards" :key="c.id">
+          <NuxtLink :to="c.id === 'conversational-ai' ? '/chatbots' : { path: '/projects', query: { category: c.id } }" class="card card-hover block h-full p-5">
+            <p class="font-medium">{{ c.label }}</p>
+            <p class="mt-1 text-sm text-muted">{{ c.blurb }}</p>
+            <p class="mt-3 text-xs text-accent">
+              <template v-if="c.id === 'conversational-ai'">{{ whatsapp.length }} WhatsApp chatbots</template>
+              <template v-else>{{ c.items.length }} project{{ c.items.length === 1 ? '' : 's' }}: {{ c.items.map((p) => p.name.replace(/ \(.*\)/, '')).join(', ') }}</template>
+            </p>
+          </NuxtLink>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Timeline -->
+    <section class="card p-6 sm:p-8" aria-labelledby="when">
+      <div class="flex flex-wrap items-end justify-between gap-3">
+        <div>
+          <p class="num">Timeline</p>
+          <h2 id="when" class="h-section mt-2">Months worked, by project</h2>
+        </div>
+        <NuxtLink to="/timeline" class="no-print link text-sm">Filter by period →</NuxtLink>
+      </div>
+      <div class="mt-5"><WorkTimeline :projects="shownProjects" compact /></div>
+      <p class="mt-3 text-xs text-muted">Commit dates from git. Gaps do not mean no work.</p>
+    </section>
+
+    <!-- Projects -->
     <section class="card p-6 sm:p-8" aria-labelledby="projects">
       <div class="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p class="num">PROJECTS</p>
+          <p class="num">Projects</p>
           <h2 id="projects" class="h-section mt-2">Where the work has been</h2>
         </div>
         <NuxtLink to="/projects" class="link text-sm">All projects and filters →</NuxtLink>
@@ -91,44 +191,11 @@ const pad = (n: number) => String(n).padStart(3, '0')
       </ul>
     </section>
 
-    <!-- Categories -->
-    <section aria-labelledby="categories">
-      <h2 id="categories" class="h-section mb-4">Project categories</h2>
-      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <li v-for="c in categories" :key="c.id">
-          <NuxtLink :to="{ path: '/projects', query: { category: c.id } }" class="card card-hover block h-full p-5">
-            <p class="font-medium">{{ c.label }}</p>
-            <p class="mt-1 text-sm text-muted">{{ c.blurb }}</p>
-            <p class="mt-3 text-xs text-accent">
-              <template v-if="c.id === 'conversational-ai'">{{ shownBots.length }} bot{{ shownBots.length === 1 ? '' : 's' }} listed</template>
-              <template v-else>
-                {{ shownProjects.filter((p) => p.category === c.id).length || 'No' }} project{{ shownProjects.filter((p) => p.category === c.id).length === 1 ? '' : 's' }}
-              </template>
-            </p>
-          </NuxtLink>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Highlights -->
-    <section aria-labelledby="highlights">
-      <h2 id="highlights" class="h-section">Selected highlights</h2>
-      <p class="mt-2 text-sm text-muted">Each links to a project page with its supporting commits. Team contributions are shown as such.</p>
-      <ul class="mt-4 grid gap-4 md:grid-cols-2">
-        <li v-for="h in highlights" :key="h.to">
-          <NuxtLink :to="h.to" class="card card-hover block h-full p-5">
-            <p class="font-medium">{{ h.title }}</p>
-            <p class="mt-1 text-sm text-muted">{{ h.text }}</p>
-          </NuxtLink>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Tech rings -->
+    <!-- Technology and capabilities -->
     <section aria-labelledby="stack">
       <div class="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <p class="num">TECHNOLOGY</p>
+          <p class="num">Technology</p>
           <h2 id="stack" class="h-section mt-2">Technology ecosystem</h2>
         </div>
         <NuxtLink to="/capabilities" class="link text-sm">Capabilities by discipline →</NuxtLink>
@@ -140,6 +207,26 @@ const pad = (n: number) => String(n).padStart(3, '0')
       <ul class="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
         <li v-for="[name, n] in rings" :key="name"><TechRing :name="name" :count="n" :total="o.projectCount" /></li>
       </ul>
+      <ul class="mt-5 flex flex-wrap gap-2" aria-label="Disciplines">
+        <li v-for="c in groupsWithEvidence" :key="c.id" class="tag-pill"><span class="h-1.5 w-1.5 rounded-full bg-accent" />{{ c.group }}</li>
+      </ul>
+    </section>
+
+    <!-- How the evidence is classified -->
+    <section class="card p-6 sm:p-8" aria-labelledby="trust">
+      <p class="num">Evidence</p>
+      <h2 id="trust" class="h-section mt-2">How to trust these numbers</h2>
+      <p class="mt-2 max-w-3xl text-sm text-muted">
+        Every claim is classified, and project pages link to the commits behind it. Commit links open private repositories and
+        need access. Commit counts show activity, not value.
+      </p>
+      <dl class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div v-for="(v, k) in verificationLabels" :key="k" class="rounded-xl border border-line bg-surface p-4">
+          <dt><VerificationBadge :status="k" /></dt>
+          <dd class="mt-2 text-xs text-muted">{{ v.description }}</dd>
+        </div>
+      </dl>
+      <NuxtLink to="/evidence" class="link mt-5 inline-block text-sm">Browse the evidence →</NuxtLink>
     </section>
   </div>
 </template>
