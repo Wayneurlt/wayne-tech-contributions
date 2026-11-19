@@ -1,0 +1,26 @@
+{
+  "reposRoot": "C:/Users/wayne/Desktop",
+  "authorEmails": [
+    "wayneurlt@gmail.com",
+    "106735490+Wayneurlt@users.noreply.github.com"
+  ],
+  "repos": [
+    { "dir": "temi_v1", "projectId": "temi" },
+    { "dir": "Temi_v2", "projectId": "temi" },
+    { "dir": "temi-app", "projectId": "temi" },
+    { "dir": "temi-backend_v2", "projectId": "temi" },
+    { "dir": "Temi-Subscription-Landing-Page-", "projectId": "temi-subscriptions" },
+    { "dir": "hr-frontend", "projectId": "play-group-hr" },
+    { "dir": "hr-backend", "projectId": "play-group-hr" },
+    { "dir": "byzara_v3", "projectId": "byzara" },
+    { "dir": "ZuriHealthFrontend", "projectId": "zuri-frontend-poc" },
+    { "dir": "bi-dashboard", "projectId": "bi-zuri-health" },
+    { "dir": "stats-dashboard", "projectId": "i3-zuri-health" },
+    { "dir": "doctors-portal", "projectId": "doctors-portal" },
+    { "dir": "zurimama_chat_automation", "projectId": "chatbot-unassigned" },
+    { "dir": "medical-camps-frontend", "projectId": "medical-camps" },
+    { "dir": "medical-camps-backend", "projectId": "medical-camps" },
+    { "dir": "Hema", "projectId": "hema" },
+    { "dir": "Play", "projectId": "play" }
+  ]
+}
