@@ -15,11 +15,12 @@ const channelName: Record<string, string> = { WHATSAPP: 'WhatsApp', INSTAGRAM: '
       <Icon :name="channelIcon[bot.channel] ?? 'lucide:bot'" class="h-4 w-4" aria-hidden="true" />
     </span>
     <div class="min-w-0 flex-1">
-      <p class="truncate text-sm font-medium" :title="bot.name">{{ bot.name }}</p>
-      <p class="text-xs text-muted">{{ channelName[bot.channel] ?? bot.channel }} · created {{ formatDate(bot.createdAt, { month: 'short', year: 'numeric' }) }}</p>    </div>
-    <div class="shrink-0 text-right">
+      <p class="break-words text-sm font-medium leading-snug">{{ bot.name }}</p>
+      <p class="text-xs text-muted">{{ channelName[bot.channel] ?? bot.channel }} · {{ formatDate(bot.createdAt, { month: 'short', year: 'numeric' }) }}</p>
+    </div>
+    <div class="shrink-0 text-right" title="Conversations in the bot inbox, not a count of users">
       <p class="text-sm font-medium tabular-nums">{{ bot.inboxTotal.toLocaleString('en-GB') }}</p>
-      <p class="text-[11px] text-muted">inbox conversations</p>
+      <p class="text-[11px] text-muted">conversations</p>
     </div>
   </li>
 </template>
