@@ -6,6 +6,7 @@ if (!project) {
 }
 useHead({ title: `${project.name} · Technical Contributions` })
 
+import { botAttribution } from '~~/content/evidence/chatbot-ownership'
 const { hide, shownProjects, shownBots } = usePresentation()
 const stats = statsForProject(project)
 const evidence = evidenceForProject(project.id)
@@ -148,7 +149,6 @@ const byMonth = (() => {
           </details>
           <div v-if="!hide" class="mt-4 grid gap-3 sm:grid-cols-2">
             <PendingNote>No pull requests have been linked yet (they need GitHub CLI or an export).</PendingNote>
-            <PendingNote>No Linear tickets have been linked yet (the Linear connector or an export is required).</PendingNote>
           </div>
           <template v-if="hasMedia || !hide">
             <h3 class="mt-6 text-sm font-medium text-muted">Screenshots and recordings</h3>
@@ -163,7 +163,7 @@ const byMonth = (() => {
           <p class="mt-2 text-xs text-muted">
             From the SendPulse chatbots API, retrieved {{ formatDate(botRetrievedAt) }}. Inbox conversations are not a count of users.
           </p>
-          <div class="mt-3"><PendingNote>Your part in this bot: flows, integrations, configuration and testing.</PendingNote></div>
+          <p class="mt-3 text-sm text-muted">{{ botAttribution }}</p>
         </section>
 
         <!-- Business relevance -->

@@ -17,7 +17,7 @@ const glanceTop = computed(() =>
 const groups = computed(() =>
   capabilities
     .map((c) => ({ ...c, projectIds: c.projectIds.filter((id) => shownIds.value.has(id)) }))
-    .filter((c) => !(hide.value && !c.projectIds.length)),
+    .filter((c) => !(hide.value && !c.projectIds.length && c.pendingNote)),
 )
 const hash = (id: string) => id.split('-').pop()
 const print = () => window.print()
@@ -94,7 +94,7 @@ const print = () => window.print()
             <tr class="border-b rule"><th scope="row" class="py-2 pr-4 text-left font-medium">Categories</th><td>{{ o.sectors }}</td></tr>
             <tr class="border-b rule"><th scope="row" class="py-2 pr-4 text-left font-medium">Repositories contributed to</th><td>{{ o.repos }} (shared with other developers)</td></tr>
             <tr class="border-b rule"><th scope="row" class="py-2 pr-4 text-left font-medium">Documented contributions</th><td>{{ o.contributionCount }}</td></tr>
-            <tr class="border-b rule"><th scope="row" class="py-2 pr-4 text-left font-medium">Linked commits</th><td>{{ o.evidenceCount }}<template v-if="!hide"> (pull requests and Linear tickets pending)</template></td></tr>
+            <tr class="border-b rule"><th scope="row" class="py-2 pr-4 text-left font-medium">Linked commits</th><td>{{ o.evidenceCount }}<template v-if="!hide"> (pull requests pending)</template></td></tr>
           </tbody>
         </table>
         <h3 class="mt-8 text-lg font-semibold">Reading this report</h3>
@@ -181,8 +181,8 @@ const print = () => window.print()
       <section class="page-break">
         <h2 class="text-2xl font-semibold">Chatbot and AI development</h2>
         <p v-if="shownBots.length" class="mt-2 text-sm muted">
-          {{ shownBots.length }} bot{{ shownBots.length === 1 ? '' : 's' }} {{ hide ? "confirmed as my work, from" : "found in" }} the SendPulse account (retrieved {{ formatDate(botRetrievedAt) }}). Inbox conversations are not a count of users.
-          <template v-if="!hide">Attribution of each bot to the author is pending confirmation, so none is claimed here.</template>
+          {{ shownBots.length }} chatbot{{ shownBots.length === 1 ? "" : "s" }} on SendPulse, Kenyan numbers (retrieved {{ formatDate(botRetrievedAt) }}).
+          The WhatsApp chatbots were built by Wayne Gift Ludenyi and Kingsley (self-reported). Inbox conversations are not a count of users.
         </p>
         <table v-if="shownBots.length" class="mt-3 w-full text-left text-[8.5pt]">
           <thead class="border-b-2 rule"><tr><th class="py-1 pr-2">Bot</th><th class="pr-2">Channel</th><th class="pr-2">Created</th><th class="text-right">Inbox conv.</th></tr></thead>
@@ -211,13 +211,12 @@ const print = () => window.print()
           <li>{{ o.projectCount }} projects across {{ o.sectors }} categories, shared with other developers where noted.</li>
           <li>Front-end work in Vue/Nuxt, React/Next.js and Flutter; back-end work in Nuxt server routes and FastAPI; data modelling in Postgres.</li>
           <li>Integrations: WhatsApp ordering, subscription click tracking and consent redirect, push notifications, real-time socket events, mobile-to-API wiring.</li>
-          <li>AI: contributions to the HR Assistant<template v-if="!hide">. Chatbot projects are pending evidence</template>.</li>
+          <li>AI and conversational: contributions to the HR Assistant, and WhatsApp chatbots built with a colleague, Kingsley (self-reported).</li>
           <li>Research: multi-country, bilingual Zuri Health front-end proof of concept.</li>
         </ul>
         <h3 v-if="!hide" class="mt-6 text-base font-semibold">Outstanding items</h3>
         <ul v-if="!hide" class="mt-2 list-disc space-y-1 pl-5 text-sm muted">
-          <li>The author's role on each SendPulse bot, and which bots to include.</li>
-          <li>Pull requests and Linear tickets; screenshots and recordings.</li>
+          <li>Pull requests; screenshots and recordings.</li>
           <li>Business outcomes and metrics the organisation is willing to cite.</li>
         </ul>
       </section>

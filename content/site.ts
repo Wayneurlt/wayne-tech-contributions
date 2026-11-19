@@ -30,7 +30,7 @@ export const categories: { id: CategoryId; label: string; blurb: string }[] = [
 ]
 
 export const verificationLabels: Record<Verification, { label: string; description: string }> = {
-  verified: { label: 'Verified', description: 'Directly supported by a git commit, Linear or another reliable record.' },
+  verified: { label: 'Verified', description: 'Directly supported by a git commit or another reliable record.' },
   documented: { label: 'Documented', description: 'Supported by project documentation or other records.' },
   'self-reported': { label: 'Self-reported', description: 'Provided by Wayne and not independently verified.' },
   pending: { label: 'Pending', description: 'Needs clarification or evidence before it can be relied on.' },
@@ -96,10 +96,10 @@ export const capabilities: Capability[] = [
   {
     id: 'conversational',
     group: 'Conversational AI',
-    summary: 'WhatsApp virtual-hospital and consumer chatbots on SendPulse.',
+    summary:
+      'WhatsApp virtual-hospital and consumer chatbots on SendPulse, built with a colleague, Kingsley (self-reported). See the Chatbot page.',
     projectIds: [],
-    technologies: [],
-    pendingNote: "The bots exist in SendPulse, but the author's role on each is not confirmed yet. See the Chatbot page.",
+    technologies: ['WhatsApp', 'SendPulse'],
   },
   {
     id: 'automation',

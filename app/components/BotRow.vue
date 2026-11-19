@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { ChatbotRecord } from '~/types/content'
-import { botRoles } from '~~/content/evidence/chatbot-ownership'
 defineProps<{ bot: ChatbotRecord }>()
 const channelIcon: Record<string, string> = {
   WHATSAPP: 'simple-icons:whatsapp',
@@ -17,9 +16,7 @@ const channelName: Record<string, string> = { WHATSAPP: 'WhatsApp', INSTAGRAM: '
     </span>
     <div class="min-w-0 flex-1">
       <p class="truncate text-sm font-medium" :title="bot.name">{{ bot.name }}</p>
-      <p class="text-xs text-muted">{{ channelName[bot.channel] ?? bot.channel }} · created {{ formatDate(bot.createdAt, { month: 'short', year: 'numeric' }) }}</p>
-      <p v-if="botRoles[bot.id]" class="mt-0.5 text-xs text-accent">{{ botRoles[bot.id] }}</p>
-    </div>
+      <p class="text-xs text-muted">{{ channelName[bot.channel] ?? bot.channel }} · created {{ formatDate(bot.createdAt, { month: 'short', year: 'numeric' }) }}</p>    </div>
     <div class="shrink-0 text-right">
       <p class="text-sm font-medium tabular-nums">{{ bot.inboxTotal.toLocaleString('en-GB') }}</p>
       <p class="text-[11px] text-muted">inbox conversations</p>

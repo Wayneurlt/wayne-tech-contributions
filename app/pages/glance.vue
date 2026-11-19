@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { glance } from '~~/content/glance'
-import { myBotIds } from '~~/content/evidence/chatbot-ownership'
+import { isMyBot } from '~~/content/evidence/chatbot-ownership'
 useHead({ title: 'At a glance · Technical Contributions' })
 
 const { shownProjects, hide } = usePresentation()
 // Only bots the author has confirmed as their own work are ever counted here.
-const confirmedBots = computed(() => bots.filter((b) => myBotIds.includes(b.id)))
+const confirmedBots = computed(() => bots.filter(isMyBot))
 const o = computed(() => overview(shownProjects.value))
 const shownIds = computed(() => new Set(shownProjects.value.map((p) => p.id)))
 
@@ -105,8 +105,8 @@ const pad = (n: number) => String(n).padStart(2, '0')
       </div>
       <div v-if="confirmedBots.length" class="card p-5 md:col-span-2">
         <p class="num">CHATBOTS</p>
-        <p class="mt-2 text-lg font-medium">{{ confirmedBots.length }} chatbot{{ confirmedBots.length === 1 ? '' : 's' }}</p>
-        <p class="mt-1 text-sm text-muted">Bots confirmed as my work. See the Chatbots page for the part I handled on each.</p>
+        <p class="mt-2 text-lg font-medium">{{ confirmedBots.length }} WhatsApp chatbot{{ confirmedBots.length === 1 ? '' : 's' }}</p>
+        <p class="mt-1 text-sm text-muted">Built with Kingsley on Kenyan numbers (self-reported). See the Chatbots page.</p>
       </div>
     </section>
 

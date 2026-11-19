@@ -1,11 +1,9 @@
 /**
- * Which SendPulse bots Wayne has confirmed as his work, and what he did on each.
- *
- * Presentation mode ("hide pending") shows ONLY bots listed here. Add a bot's id
- * (from content/evidence/chatbots.json) and a plain description of your part, e.g.:
- *
- *   'abc123': 'Designed the booking flow and the insurer-lookup integration; tested with the client.'
+ * Attribution for the SendPulse chatbots, as stated by Wayne: the WhatsApp chatbots
+ * were built by Wayne Gift Ludenyi and Kingsley. This is self-reported. SendPulse does
+ * not record who built a bot, so it cannot be verified from the account itself.
  */
-export const botRoles: Record<string, string> = {}
+export const botAttribution = 'Built by Wayne Gift Ludenyi and Kingsley. Self-reported, not independently verified.'
 
-export const myBotIds = Object.keys(botRoles)
+/** Bots covered by the attribution above. Instagram and website chat bots are not claimed. */
+export const isMyBot = (b: { channel: string }) => b.channel === 'WHATSAPP'

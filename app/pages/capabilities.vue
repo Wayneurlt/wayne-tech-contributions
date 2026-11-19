@@ -5,7 +5,7 @@ const shownIds = computed(() => new Set(shownProjects.value.map((p) => p.id)))
 const groups = computed(() =>
   capabilities
     .map((c) => ({ ...c, projectIds: c.projectIds.filter((id) => shownIds.value.has(id)) }))
-    .filter((c) => !(hide.value && !c.projectIds.length)),
+    .filter((c) => !(hide.value && !c.projectIds.length && c.pendingNote)),
 )
 </script>
 

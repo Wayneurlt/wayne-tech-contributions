@@ -9,8 +9,7 @@ const byArea = computed(() => {
   return Object.entries(m).sort((a, b) => b[1] - a[1])
 })
 const pendingItems = computed(() => [
-  `Your role on each of the ${bots.length} SendPulse bots: not yet confirmed`,
-  'Pull requests and Linear tickets: not yet linked',
+  'Pull requests: not yet linked',
   'Screenshots and recordings: none supplied',
 ])
 </script>

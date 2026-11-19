@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { botRoles } from '~~/content/evidence/chatbot-ownership'
+import { botAttribution } from '~~/content/evidence/chatbot-ownership'
 useHead({ title: 'Chatbot and AI development · Technical Contributions' })
 
 const { hide, shownBots } = usePresentation()
@@ -9,8 +9,8 @@ const visible = ref(30)
 const channelCount = (c: string) => shownBots.value.filter((b) => b.channel === c).length
 const featured = computed(() =>
   featuredBotNames
-    .map((n) => ({ name: n, bot: bots.find((b) => b.name === n) }))
-    .filter((f) => !hide.value || (f.bot && shownBots.value.some((b) => b.id === f.bot!.id))),
+    .map((n) => ({ name: n, bot: shownBots.value.find((b) => b.name === n) }))
+    .filter((f) => f.bot),
 )
 const moved = computed(() => shownBots.value.filter((b) => b.projectId))
 const listable = computed(() => shownBots.value.filter((b) => !b.projectId))
@@ -26,19 +26,18 @@ const aiEvidence = evidenceForIds(['hr-backend-1e61308', 'hr-backend-d0c52a1', '
 <template>
   <div class="container-page space-y-8 py-6 lg:py-2">
     <header>
-      <p class="num">PAGE 3</p>
+      <p class="num">Page 3</p>
       <h1 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Chatbot and AI development</h1>
-      <p v-if="!hide" class="lead mt-3 max-w-3xl">
-        Every bot found in the SendPulse account, listed for review. Your own role on each one is still to be confirmed,
-        so no bot is described as your work yet.
+      <p class="lead mt-3 max-w-3xl">
+        WhatsApp virtual-hospital and consumer chatbots on SendPulse, built by Wayne Gift Ludenyi and Kingsley, plus
+        AI-assisted features in repositories.
       </p>
-      <p v-else class="lead mt-3 max-w-3xl">Chatbots and AI-assisted features I worked on.</p>
     </header>
 
     <template v-if="shownBots.length">
       <section class="grid gap-3 sm:grid-cols-3" aria-label="Chatbot totals">
-        <StatTile :value="shownBots.length" :label="hide ? 'Bots I worked on' : 'Bots in the account'" :note="hide ? undefined : 'All shown below, nothing removed yet'" />
-        <StatTile :value="channelCount('WHATSAPP')" label="WhatsApp bots" />
+        <StatTile :value="shownBots.length" label="Chatbots" />
+        <StatTile :value="channelCount('WHATSAPP')" label="WhatsApp chatbots" />
         <StatTile :value="channelCount('INSTAGRAM') + channelCount('LIVE_CHAT')" label="Instagram and website chat bots" />
       </section>
 
@@ -49,41 +48,34 @@ const aiEvidence = evidenceForIds(['hr-backend-1e61308', 'hr-backend-d0c52a1', '
             Source: SendPulse chatbots API, read-only, retrieved {{ formatDate(botRetrievedAt) }}. Only bot names, channels,
             creation dates and inbox totals were read. No contacts or messages were accessed.
           </li>
+          <li>Scope: {{ botScope }}. Bots serving other countries are not listed.</li>
+          <li>{{ botAttribution }} This covers the WhatsApp chatbots. Instagram and website chat bots are listed but not claimed.</li>
           <li>
             "Inbox conversations" is the number of conversations in a bot's inbox. It is <strong class="text-fg">not</strong> a count of users.
-          </li>
-          <li v-if="!hide">
-            This is the shared company account, so a bot listed here is not evidence that it was built by Wayne. Attribution is
-            <span class="text-warn">pending</span> until confirmed per bot.
           </li>
         </ul>
       </section>
 
       <section v-if="featured.length" aria-labelledby="named">
-        <h2 id="named" class="h-section !text-xl">{{ hide ? 'Client virtual-hospital bots' : 'Bots named in the brief' }}</h2>
+        <h2 id="named" class="h-section !text-xl">Client virtual-hospital bots</h2>
         <ul class="mt-4 grid gap-4 lg:grid-cols-3">
           <li v-for="f in featured" :key="f.name" class="card flex flex-col p-5">
             <div class="flex items-start justify-between gap-2">
               <Icon name="simple-icons:whatsapp" class="h-5 w-5 text-accent" aria-hidden="true" />
-              <VerificationBadge v-if="!hide" status="pending" />
+              <VerificationBadge status="self-reported" />
             </div>
             <h3 class="mt-3 font-medium">{{ f.name }}</h3>
-            <p v-if="f.bot" class="mt-1 text-xs text-muted">
-              Created {{ formatDate(f.bot.createdAt) }} · {{ f.bot.inboxTotal.toLocaleString('en-GB') }} inbox conversations
+            <p class="mt-1 text-xs text-muted">
+              Created {{ formatDate(f.bot!.createdAt) }} · {{ f.bot!.inboxTotal.toLocaleString('en-GB') }} inbox conversations
             </p>
-            <p v-else class="mt-1 text-xs text-warn">Not found in SendPulse under this exact name.</p>
-            <p v-if="f.bot && botRoles[f.bot.id]" class="mt-3 text-sm text-muted">{{ botRoles[f.bot.id] }}</p>
-            <div v-else class="mt-4"><PendingNote>Your part: conversation flows, integrations, configuration and testing.</PendingNote></div>
+            <p class="mt-3 text-sm text-muted">Built by Wayne Gift Ludenyi and Kingsley.</p>
           </li>
         </ul>
-        <p v-if="!hide" class="mt-3 text-xs text-muted">
-          The Somerset bot is matched by name to “Somerset Westview Virtual Hospital”. Please confirm that is the bot you meant.
-        </p>
       </section>
 
       <section v-if="listable.length" aria-labelledby="all">
         <div class="flex flex-wrap items-end justify-between gap-2">
-          <h2 id="all" class="h-section !text-xl">{{ hide ? 'All bots' : 'All other bots' }} ({{ listable.length }})</h2>
+          <h2 id="all" class="h-section !text-xl">All chatbots ({{ listable.length }})</h2>
           <p v-if="moved.length" class="text-xs text-muted">
             {{ moved.length }} bot{{ moved.length === 1 ? '' : 's' }} shown under
             <NuxtLink v-for="m in moved" :key="m.id" :to="`/projects/${m.projectId}`" class="link">{{ getProject(m.projectId!)?.name }}</NuxtLink>

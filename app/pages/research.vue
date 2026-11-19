@@ -37,7 +37,7 @@ const { hide } = usePresentation()
         <code class="font-mono text-xs">content/site.ts</code> once you confirm it.
       </p>
       <div class="mt-4"><PendingNote>
-        Candidates to confirm: the WhatsApp virtual-hospital chatbots, the HR Assistant design, and any architecture experiments not in git.
+        Candidates to confirm: the HR Assistant design, and any architecture experiments not in git.
       </PendingNote></div>
     </section>
   </div>
