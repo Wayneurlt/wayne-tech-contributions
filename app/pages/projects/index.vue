@@ -41,11 +41,8 @@ const reset = () => {
 <template>
   <div class="container-page py-12">
     <p class="eyebrow">Page 2</p>
-    <h1 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Projects and contributions</h1>
-    <p class="lead mt-3 max-w-3xl">
-      Every project lists only what the records support, with the share of commits in its repositories shown alongside
-      so shared work is not mistaken for sole ownership.
-    </p>
+    <h1 class="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">Projects</h1>
+    <p class="lead mt-3 max-w-3xl">Systems I built or helped build. Open a preview to visit the live site, or Details for what I did.</p>
 
     <form class="mt-8 grid gap-3 md:grid-cols-[1fr_auto_auto_auto]" role="search" @submit.prevent>
       <div>
@@ -80,8 +77,8 @@ const reset = () => {
 
     <p class="mt-4 text-sm text-muted" role="status" aria-live="polite">{{ filtered.length }} of {{ shownProjects.length }} projects</p>
 
-    <ul v-if="filtered.length" class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      <li v-for="p in filtered" :key="p.id"><ProjectCard :project="p" /></li>
+    <ul v-if="filtered.length" class="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <li v-for="p in filtered" :key="p.id"><ProjectShowcaseCard :project="p" /></li>
     </ul>
     <div v-else class="card mt-6 p-8 text-center">
       <p class="font-medium">No projects match these filters.</p>
