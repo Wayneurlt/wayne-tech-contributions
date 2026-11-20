@@ -26,6 +26,17 @@ Set `PORTFOLIO_PASSWORD` (and optionally `PORTFOLIO_USER`, default `management`)
 - **Chatbots**: the SendPulse list is scoped to Kenyan numbers (`scripts/sendpulse-inventory.mjs`). Attribution (built by Wayne and Kingsley, self-reported) is in `content/evidence/chatbot-ownership.ts`.
 - `docs/talking-points.md` is private notes for the author and is not served by the site.
 
+## Project screenshots
+
+The project cards show a browser-style preview of each live site and link out to it. Previews come from `public/screens/<project-id>.png`; a card without an image shows a placeholder.
+
+```bash
+npm run screens              # capture every site in scripts/screens.config.json
+npm run screens -- byzara    # capture one site
+```
+
+The script opens each address as an ordinary visitor (no logins), so sites behind a login show only their login page. **Open each image and check it before committing**: nothing private (names, patient or customer data, internal figures) may be visible. Delete any file that shows something it should not, and the card falls back to the placeholder. Requires Chrome or Edge installed (set `CHROME_PATH` to override).
+
 ## Where content lives
 
 | What | File |
