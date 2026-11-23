@@ -519,6 +519,7 @@ export const projects: Project[] = [
     category: 'digital-services',
     sector: 'Digital services (corporate website; pending confirmation)',
     summary: 'A Nuxt corporate website for The Play Group with about, services, blog, terms and privacy pages.',
+    liveUrl: 'https://theplaygroup.net',
     status: 'unknown',
     scale: 'feature',
     attribution: 'primary',
